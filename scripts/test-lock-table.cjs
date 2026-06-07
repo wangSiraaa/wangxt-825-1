@@ -38,7 +38,6 @@ const typesContent = fs.readFileSync(path.join(__dirname, '../src/types/index.ts
 const mockDataContent = fs.readFileSync(path.join(__dirname, '../src/data/mockData.ts'), 'utf-8');
 const canvasContent = fs.readFileSync(path.join(__dirname, '../src/components/TableCanvas.tsx'), 'utf-8');
 const hooksContent = fs.readFileSync(path.join(__dirname, '../src/hooks/useSeatingState.ts'), 'utf-8');
-const cssContent = fs.readFileSync(path.join(__dirname, '../src/index.css'), 'utf-8');
 
 test('Table 类型定义包含 isLocked 字段', () => {
   assert(typesContent.includes('isLocked: boolean'), 'Table 类型中未找到 isLocked 字段');
@@ -58,8 +57,7 @@ test('TableCanvas 组件中存在锁定桌位的样式判断', () => {
 
 test('TableCanvas 中锁定桌位禁用拖拽', () => {
   assert(canvasContent.includes('!canEdit || table.isLocked'), 'TableCanvas 中未对锁定桌位禁用 mousedown');
-  const hasCursorNotAllowed = canvasContent.includes('cursor-not-allowed') || cssContent.includes('cursor: not-allowed');
-  assert(hasCursorNotAllowed, 'TableCanvas 或 CSS 中缺少 not-allowed 光标样式');
+  assert(canvasContent.includes('cursor: not-allowed'), 'TableCanvas 中缺少 not-allowed 光标样式');
 });
 
 console.log('\n🧪 模拟拖拽逻辑测试...\n');

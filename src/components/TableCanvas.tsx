@@ -120,7 +120,7 @@ const TableCanvas: React.FC<TableCanvasProps> = ({
             key={table.id}
             className={`absolute table-card rounded-xl shadow-lg border-2 p-3
               ${table.isLocked 
-                ? 'border-yellow-500 bg-yellow-50 locked' 
+                ? 'border-yellow-500 bg-yellow-50 locked cursor-not-allowed' 
                 : 'border-wedding-primary bg-white cursor-move hover:shadow-xl'
               }
               ${canEdit && !table.isLocked ? 'cursor-move' : ''}

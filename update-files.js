@@ -1,4 +1,7 @@
-import { Table, Guest, MenuItem, ChangeRecord } from '../types';
+const fs = require('fs');
+const path = require('path');
+
+const mockDataContent = `import { Table, Guest, MenuItem, ChangeRecord } from '../types';
 
 export const mockTables: Table[] = [
   { id: 't1', name: '主桌', x: 400, y: 80, seats: 12, isLocked: true, guests: ['g1', 'g2', 'g3', 'g4'], area: '主宾区' },
@@ -11,18 +14,18 @@ export const mockTables: Table[] = [
 ];
 
 export const mockGuests: Guest[] = [
-  { id: 'g1', name: '张伟', phone: '13800000001', dietaryRestrictions: ['素食'], tableId: 't1', tags: ['长辈', '男方', '领导'] },
+  { id: 'g1', name: '张伟', phone: '13800000001', dietaryRestrictions: ['素食'], tableId: 't1', tags: ['长辈', '男方'] },
   { id: 'g2', name: '李娜', phone: '13800000002', dietaryRestrictions: [], tableId: 't1', tags: ['长辈', '女方'] },
   { id: 'g3', name: '王强', phone: '13800000003', dietaryRestrictions: ['海鲜过敏', '清真'], tableId: 't1', tags: ['长辈', '男方'] },
   { id: 'g4', name: '刘芳', phone: '13800000004', dietaryRestrictions: ['不吃辣'], tableId: 't1', tags: ['长辈', '女方'] },
-  { id: 'g5', name: '陈明', phone: '13800000005', dietaryRestrictions: [], tableId: 't2', tags: ['朋友', '男方', '同学'] },
-  { id: 'g6', name: '赵丽', phone: '13800000006', dietaryRestrictions: ['素食'], tableId: 't2', isDuplicateName: true, tags: ['朋友', '男方'] },
-  { id: 'g7', name: '孙磊', phone: '13800000007', dietaryRestrictions: [], tableId: 't2', tags: ['同事', '男方'] },
-  { id: 'g8', name: '周婷', phone: '13800000008', dietaryRestrictions: ['坚果过敏'], tableId: 't3', tags: ['闺蜜', '女方'] },
+  { id: 'g5', name: '陈明', phone: '13800000005', dietaryRestrictions: [], tableId: 't2', tags: ['朋友', '男方'] },
+  { id: 'g6', name: '赵丽', phone: '13800000006', dietaryRestrictions: ['素食'], tableId: 't2', isDuplicateName: true, tags: ['同事', '女方'] },
+  { id: 'g7', name: '孙磊', phone: '13800000007', dietaryRestrictions: [], tableId: 't2', tags: ['同学', '男方'] },
+  { id: 'g8', name: '周婷', phone: '13800000008', dietaryRestrictions: ['坚果过敏'], tableId: 't3', tags: ['同事', '男方'] },
   { id: 'g9', name: '吴刚', phone: '13800000009', dietaryRestrictions: [], tableId: 't3', tags: ['朋友', '男方'] },
-  { id: 'g10', name: '郑雪', phone: '13800000010', dietaryRestrictions: ['清真'], tableId: 't4', tags: ['闺蜜', '女方', '同学'] },
-  { id: 'g11', name: '赵丽', phone: '13800000011', dietaryRestrictions: [], tableId: 't6', isDuplicateName: true, tags: ['同事', '领导'] },
-  { id: 'g12', name: '冯杰', phone: '13800000012', dietaryRestrictions: ['海鲜过敏'], tableId: 't6', tags: ['同事'] },
+  { id: 'g10', name: '郑雪', phone: '13800000010', dietaryRestrictions: ['清真'], tableId: 't4', tags: ['闺蜜', '女方'] },
+  { id: 'g11', name: '赵丽', phone: '13800000011', dietaryRestrictions: [], tableId: 't6', isDuplicateName: true, tags: ['同事', '男方'] },
+  { id: 'g12', name: '冯杰', phone: '13800000012', dietaryRestrictions: ['海鲜过敏'], tableId: 't6', tags: ['领导', '男方'] },
   { id: 'g13', name: '何敏', phone: '13800000013', dietaryRestrictions: [], tableId: null, tags: ['同学', '女方'] },
   { id: 'g14', name: '马涛', phone: '13800000014', dietaryRestrictions: ['不吃香菜'], tableId: null, tags: ['同事', '男方'] },
   { id: 'g15', name: '林芳', phone: '13800000015', dietaryRestrictions: ['素食'], tableId: null, tags: ['闺蜜', '女方'] },
@@ -42,3 +45,7 @@ export const mockChangeHistory: ChangeRecord[] = [
   { id: 'h2', timestamp: Date.now() - 1800000, action: '分配宾客', description: '将郑雪分配到3号桌', operator: '策划师小王' },
   { id: 'h3', timestamp: Date.now() - 900000, action: '锁定桌位', description: '锁定主桌和5号桌', operator: '策划师小王' },
 ];
+`;
+
+fs.writeFileSync('/Users/mingyuan/workspace/sihuo/wangxtw3/825/src/data/mockData.ts', mockDataContent);
+console.log('mockData.ts updated');
